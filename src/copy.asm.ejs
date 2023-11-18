@@ -202,7 +202,11 @@ u64toLong_adjust_neg:
 <%=name%>_longErr:
         push    rdi
         mov     rdi, 0
+%ifdef PIC
+        call    <%=name%>_fail WRT ..plt
+%else
         call    <%=name%>_fail
+%endif
         pop     rdi
         mov rsp, rbp
         pop rdx
